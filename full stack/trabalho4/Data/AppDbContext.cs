@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var conexao = "Server=localhost;Port=3306;Database=loja_perfumes;User=root;Password=vidaloka1;";
+        var conexao = "Server=localhost;Port=3306;Database=loja_perfumes;User=root;Password=;";
         optionsBuilder.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
     }
 }
