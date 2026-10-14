@@ -1,0 +1,70 @@
+<Window x:Class="FilmesApp.PesquisaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pesquisa e Estatísticas" Height="640" Width="920" WindowStartupLocation="CenterOwner">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="160"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Filtros (todos opcionais)" Padding="6" Margin="0,0,0,10">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+
+                    <Label Content="Título contém:"/>
+                    <TextBox x:Name="TxtTitulo" Grid.Column="1" Grid.ColumnSpan="5"/>
+
+                    <Label Grid.Row="1" Content="Gênero:"/>
+                    <ComboBox x:Name="CbGenero" Grid.Row="1" Grid.Column="1"
+                              DisplayMemberPath="Nome" SelectedValuePath="Id"/>
+                    <Label Grid.Row="1" Grid.Column="2" Content="Diretor:"/>
+                    <ComboBox x:Name="CbDiretor" Grid.Row="1" Grid.Column="3"
+                              DisplayMemberPath="Nome" SelectedValuePath="Id"/>
+                    <Label Grid.Row="1" Grid.Column="4" Content="A partir de (ano):"/>
+                    <TextBox x:Name="TxtAno" Grid.Row="1" Grid.Column="5"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Label Content="Nota mínima:"/>
+                    <TextBox x:Name="TxtNota" Width="60"/>
+                    <Button Content="Pesquisar" Style="{StaticResource Acao}" Margin="12,0,8,0" Click="Pesquisar_Click"/>
+                    <Button Content="Limpar" Style="{StaticResource Acao}" Click="Limpar_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid x:Name="GridResultado" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" Width="*"/>
+                <DataGridTextColumn Header="Ano" Binding="{Binding AnoLancamento}"/>
+                <DataGridTextColumn Header="Duração" Binding="{Binding DuracaoMinutos}"/>
+                <DataGridTextColumn Header="Nota" Binding="{Binding Nota}"/>
+                <DataGridTextColumn Header="Gênero" Binding="{Binding Genero.Nome}"/>
+                <DataGridTextColumn Header="Diretor" Binding="{Binding Diretor.Nome}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock x:Name="TxtResumo" Grid.Row="2" Margin="0,8" FontWeight="SemiBold"/>
+
+        <GroupBox Grid.Row="3" Header="Filmes e nota média por gênero (GroupBy)" Padding="4">
+            <DataGrid x:Name="GridEstatisticas" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Gênero" Binding="{Binding Genero}" Width="*"/>
+                    <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}"/>
+                    <DataGridTextColumn Header="Nota média" Binding="{Binding NotaMedia, StringFormat=N1}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Window>

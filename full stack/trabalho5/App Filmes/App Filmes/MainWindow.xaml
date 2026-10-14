@@ -1,0 +1,52 @@
+<Window x:Class="FilmesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Catálogo de Filmes" Height="540" Width="860"
+        WindowStartupLocation="CenterScreen" Background="#1E1E1E">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10,0,0,10">
+            <TextBlock Text="🎬 Catálogo de Filmes" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            
+        </StackPanel>
+
+        <UniformGrid Grid.Row="1" Rows="2" Columns="2">
+
+            <Button Style="{StaticResource Card}" Background="#E50914" Click="Filmes_Click">
+                <StackPanel>
+                    <TextBlock x:Name="TxtFilmes" Text="0" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="🎞 Filmes" FontSize="20" HorizontalAlignment="Center"/>                    
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource Card}" Background="#1F6FEB" Click="Generos_Click">
+                <StackPanel>
+                    <TextBlock x:Name="TxtGeneros" Text="0" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="🏷 Gêneros" FontSize="20" HorizontalAlignment="Center"/>
+                    
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource Card}" Background="#2EA043" Click="Diretores_Click">
+                <StackPanel>
+                    <TextBlock x:Name="TxtDiretores" Text="0" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="🎥 Diretores" FontSize="20" HorizontalAlignment="Center"/>
+                    
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource Card}" Background="#8957E5" Click="Pesquisa_Click">
+                <StackPanel>
+                    <TextBlock x:Name="TxtNota" Text="0,0" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="🔍 Pesquisa e Estatísticas" FontSize="20" HorizontalAlignment="Center"/>
+                    
+                </StackPanel>
+            </Button>
+
+        </UniformGrid>
+    </Grid>
+</Window>
